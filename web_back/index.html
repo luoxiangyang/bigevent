@@ -110,22 +110,28 @@
         }
 
     </script>
-
+    <script src="./js/util/user.js"></script>
+    <script src="./js/util/config.js"></script>
     <script>
         $('#btnlogout').click(function () {
-            $.post('http://192.168.172.82:8000/admin/logout')
-                .then(function (res) {
-                    if (res.code === 200) {
-                        alert('推出成功')
-                        window.location.href = './login.html'
-                    } else {
-                        alert(res.msg)
-                    }
-                })
+            //这样写必须让logout以方法的方式写
+            user.logout().then(function (res) {
+                if (res.code === 200) {
+                    alert('推出成功')
+                    window.location.href = './login.html'
+                } else {
+                    alert(res.msg)
+                }
+            })
         });
 
         //管理员名 与照片
-
+        user.info().then(function (res) {
+            if (res.code === 200) {
+                $('#userName').text(res.data.nickname)
+                $('.userImg').attr('src', res.data.user_pic)
+            }
+        })
     </script>
 </body>
 

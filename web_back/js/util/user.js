@@ -1,16 +1,19 @@
 //ajax
 var user = {
-    login: $.post('http://192.168.172.82:8000/admin/login', {
-        user_name: name,
-        password: password
-    }).then(function (res) {
-        if (res.code == 200) {
-            alert('登陆成功')
-        } else {
-            console.log(name, password);
+    //用户登录
+    login: function (name, password) {
+        return $.post(BASEURL + APILIST.user_login, {
+            user_name: name,
+            password: password
+        })
+    },
+    //退出
+    logout: function () {
+        return $.post(BASEURL + APILIST.user_logout)
 
-            alert(res.msg)
-        }
-    }),
-
+    },
+    //用户信息
+    info: function () {
+        return $.get(BASEURL + APILIST.user_info)
+    }
 }

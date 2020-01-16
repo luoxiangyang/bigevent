@@ -31,6 +31,7 @@
         </div>
     </div>
     <script src="./js/jquery-1.12.4.min.js"></script>
+    <!-- <script src="./js/util/user.js"></script> -->
     <script>
         //用户登录
         $('#btn').click(function () {
@@ -40,13 +41,13 @@
             if (name == 0 || password == 0) {
                 return;
             }
-            //从接口
             $.post('http://192.168.172.82:8000/admin/login', {
                 user_name: name,
                 password: password
             }).then(function (res) {
                 if (res.code == 200) {
                     alert('登陆成功')
+                    window.location.href = "./index.html"
                 } else {
                     console.log(name, password);
 
